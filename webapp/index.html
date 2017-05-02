@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>TENYKS</title>
+    <style>
+        /*@font-face {*/
+            /*font-family: myFirstFont;*/
+            /*src: url(../fonts/foolishpeopleDEMO.otf);*/
+        /*}*/
+        @font-face {
+            font-family: myFirstFont;
+            src: url(../fonts/Christmas-Decor.otf);
+        }
+        html{
+            background: #f2f2f2;
+        }
+        html *{
+            margin:0;
+            font-family: myFirstFont;
+        }
+        .container{
+            display: block;
+            max-width: 1224px;
+            margin: auto;
+        }
+        header {
+            height: 44px;
+        }
+        header h1 {
+            width: 60%;
+            display: inline-block;
+        }
+        header div{
+            width: 39%;
+            display: inline-block;
+            text-align: right;
+            font-size: 30px;
+        }
+        .main{
+            position: absolute;
+            left: 0;
+            background: url("../img/home.jpg") ;
+            background-size:cover;
+            background-position-y: 40%;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 45vh;
+            min-height: 410px;
+            overflow: hidden;
+            box-shadow: 0px 0 20px 0px black;
+        }
+        .mainContent{
+            color: white;
+            text-align: center;
+            padding: 3rem;
+            width: calc(100% - 6rem);
+            height: calc(100% - 6rem);
+            background-color: rgba(0, 14, 25, 0.8);
+        }
+        .mainContent h2{
+            font-size: 5rem;
+            transform: scale(1,1.5);
+            font-weight: 100;
+            text-shadow: 2px 5px 5px black;
+            -webkit-transform: scale(1,1.5);
+            -moz-transform: scale(1,1.5);
+            -ms-transform: scale(1,1.5);
+            -o-transform: scale(1,1.5);
+        }
+        path {
+            fill: none;
+            stroke: white;
+            stroke-width:4;
+            stroke-dasharray: 34;
+            transition: stroke-dasharray 1s ;
+        }
+        circle {
+            fill: white;
+            stroke: white;
+            stroke-width: 11;
+        }
+
+        text {
+            fill: white;
+            stroke-width: 5px;
+            font-family: cursive;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            text-shadow: 2px 5px 5px black;
+        }
+        .contenedorSVG{
+            position: absolute;left:5%; margin-top: 2rem; text-align: left;transition: width ease-out 1s;
+        }
+        svg{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<header>
+    <h1>TENYKS</h1>
+    <div>
+        <a>¿tu primera vez en tenyks?</a>
+    </div>
+</header>
+<div class="main">
+    <div class="mainContent">
+    <h2>HAZ DE TUS GANAS DE VIAJAR UN VIAJE</h2>
+        <div class="contenedorSVG" style="width: 10%;">
+        <svg height="230">
+            <path></path>
+        </svg>
+        </div>
+
+    </div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+<script>
+
+//    linea
+
+    var lineGenerator = d3.line()
+        .curve(d3.curveCardinal);
+    var svgWidth = window.innerWidth;
+    svgWidth-=((svgWidth/100)*10)
+    console.log(svgWidth);
+    var pointsConuter=0;
+    var points = [
+        [30, 110],
+        [svgWidth*0.2, 15],
+        [svgWidth*0.3, 200]
+        ,
+        [svgWidth*0.6, 15],
+        [svgWidth*0.9, 180],
+        [svgWidth, 15]
+    ];
+
+    var pathData = lineGenerator(points);
+
+    d3.select('path')
+        .attr('d', pathData) ;
+
+    d3.select('svg')
+        .selectAll('text')
+        .data(points)
+        .enter()
+        .append('text')
+        .text("X")
+        .attr('counter', function(){
+            pointsConuter=parseInt(pointsConuter)+1;
+            pointsConuter="0"+pointsConuter;
+        return pointsConuter;
+    })
+        .attr('x', function(d) {
+            return (d[0]-18);
+        })
+        .attr('y', function(d) {
+            return (d[1]+15);
+        })
+var svgCont=document.getElementsByClassName("contenedorSVG")[0];
+document.querySelectorAll('[counter="01"]')[0].onclick = function(){
+    console.log("entra");
+    if(svgCont.style.width=="10%"){
+    svgCont.style.width="20%";}
+};
+document.querySelectorAll('[counter="02"]')[0].onclick = function(){
+    console.log("entra");
+    if(svgCont.style.width=="20%"){
+        svgCont.style.width="29%";}
+};
+document.querySelectorAll('[counter="03"]')[0].onclick = function(){
+    console.log("entra");
+    if(svgCont.style.width=="29%"){
+        svgCont.style.width="57%";}
+};
+document.querySelectorAll('[counter="04"]')[0].onclick = function(){
+    console.log("entra");
+    if(svgCont.style.width=="57%"){
+        svgCont.style.width="86%";}
+};
+document.querySelectorAll('[counter="05"]')[0].onclick = function(){
+    console.log("entra");
+    if(svgCont.style.width=="86%"){
+        svgCont.style.width="100%";}
+};
+
+
+</script>
+</body>
+</html>

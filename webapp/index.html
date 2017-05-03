@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>TENYKS</title>
     <style>
-        /*@font-face {*/
-            /*font-family: myFirstFont;*/
-            /*src: url(../fonts/foolishpeopleDEMO.otf);*/
-        /*}*/
         @font-face {
             font-family: myFirstFont;
             src: url(../fonts/Christmas-Decor.otf);
@@ -123,14 +119,14 @@
 <script>
 
 //    linea
-
+var points = [];
+function crearLineaFin(){
     var lineGenerator = d3.line()
-        .curve(d3.curveCardinal);
+            .curve(d3.curveCardinal);
     var svgWidth = window.innerWidth;
-    svgWidth-=((svgWidth/100)*10)
-    console.log(svgWidth);
+    svgWidth-=((svgWidth/100)*10);
     var pointsConuter=0;
-    var points = [
+    points = [
         [30, 110],
         [svgWidth*0.2, 15],
         [svgWidth*0.3, 200]
@@ -139,6 +135,7 @@
         [svgWidth*0.9, 180],
         [svgWidth, 15]
     ];
+console.log(points);
 
     var pathData = lineGenerator(points);
 
@@ -161,34 +158,29 @@
         })
         .attr('y', function(d) {
             return (d[1]+15);
-        })
-var svgCont=document.getElementsByClassName("contenedorSVG")[0];
-document.querySelectorAll('[counter="01"]')[0].onclick = function(){
-    console.log("entra");
-    if(svgCont.style.width=="10%"){
-    svgCont.style.width="20%";}
-};
-document.querySelectorAll('[counter="02"]')[0].onclick = function(){
-    console.log("entra");
-    if(svgCont.style.width=="20%"){
-        svgCont.style.width="29%";}
-};
-document.querySelectorAll('[counter="03"]')[0].onclick = function(){
-    console.log("entra");
-    if(svgCont.style.width=="29%"){
-        svgCont.style.width="57%";}
-};
-document.querySelectorAll('[counter="04"]')[0].onclick = function(){
-    console.log("entra");
-    if(svgCont.style.width=="57%"){
-        svgCont.style.width="86%";}
-};
-document.querySelectorAll('[counter="05"]')[0].onclick = function(){
-    console.log("entra");
-    if(svgCont.style.width=="86%"){
-        svgCont.style.width="100%";}
-};
+        })}
+crearLineaFin();
 
+
+//listeners en x del mapa para aumentar el tamaño
+var svgCont=document.getElementsByClassName("contenedorSVG")[0];
+var mapPoints=document.getElementsByTagName("text");
+for(var i =0; i<mapPoints.length;i++){
+    document.querySelectorAll('[counter]')[i].onclick = function(){
+        console.log("entra");
+        if(svgCont.style.width=="10%" || parseInt(svgCont.style.width)<points[parseInt(this.getAttribute("counter"))][0]+18){
+            svgCont.style.width=points[parseInt(this.getAttribute("counter"))][0]+18+"px";
+        }
+    }
+}
+
+//resize del svg para responsive
+window.onresize = function(){  crearLineaFin();
+    var mapPoints=document.getElementsByTagName("text");
+    for(var i =0; i<mapPoints.length;i++){
+        mapPoints[i].setAttribute("x", (points[i][0]-18));
+    }
+    }
 
 </script>
 </body>

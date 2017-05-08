@@ -4,96 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>TENYKS</title>
-    <style>
-        @font-face {
-            font-family: myFirstFont;
-            src: url(../fonts/Christmas-Decor.otf);
-        }
-        html{
-            background: #f2f2f2;
-        }
-        html *{
-            margin:0;
-            font-family: myFirstFont;
-        }
-        .container{
-            display: block;
-            max-width: 1224px;
-            margin: auto;
-        }
-        header {
-            height: 44px;
-        }
-        header h1 {
-            width: 60%;
-            display: inline-block;
-        }
-        header div{
-            width: 39%;
-            display: inline-block;
-            text-align: right;
-            font-size: 30px;
-        }
-        .main{
-            position: absolute;
-            left: 0;
-            background: url("../img/home.jpg") ;
-            background-size:cover;
-            background-position-y: 40%;
-            background-repeat: no-repeat;
-            width: 100%;
-            height: 45vh;
-            min-height: 410px;
-            overflow: hidden;
-            box-shadow: 0px 0 20px 0px black;
-        }
-        .mainContent{
-            color: white;
-            text-align: center;
-            padding: 3rem;
-            width: calc(100% - 6rem);
-            height: calc(100% - 6rem);
-            background-color: rgba(0, 14, 25, 0.8);
-        }
-        .mainContent h2{
-            font-size: 5rem;
-            transform: scale(1,1.5);
-            font-weight: 100;
-            text-shadow: 2px 5px 5px black;
-            -webkit-transform: scale(1,1.5);
-            -moz-transform: scale(1,1.5);
-            -ms-transform: scale(1,1.5);
-            -o-transform: scale(1,1.5);
-        }
-        path {
-            fill: none;
-            stroke: white;
-            stroke-width:4;
-            stroke-dasharray: 34;
-            transition: stroke-dasharray 1s ;
-        }
-        circle {
-            fill: white;
-            stroke: white;
-            stroke-width: 11;
-        }
-
-        text {
-            fill: white;
-            stroke-width: 5px;
-            font-family: cursive;
-            font-size: 40px;
-            color: white;
-            cursor: pointer;
-            text-shadow: 2px 5px 5px black;
-        }
-        .contenedorSVG{
-            position: absolute;left:5%; margin-top: 2rem; text-align: left;transition: width ease-out 1s;
-        }
-        svg{
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="styles/mainHome.css">
 </head>
 <body>
 <div class="container">
@@ -106,9 +17,60 @@
 <div class="main">
     <div class="mainContent">
     <h2>HAZ DE TUS GANAS DE VIAJAR UN VIAJE</h2>
+        <div class="mainModal arrow_box arrow1" data-modal="01" style="top:330px; ">
+            <div>
+                <h3>Selecciona tu presupuesto y numero de pasajeros</h3>
+                <form>
+                    <label>
+                        Presupuesto:
+                        <input type="text">
+                    </label>
+                    <label>
+                        Cantidad Pasajeros:
+                        <select>
+                            <option selected>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </label>
+                </form>
+                <button onclick="nextStep('02',1)">Next</button>
+            </div>
+        </div>
+        <div class="mainModal arrow_box arrow2" data-modal="02" style="top:235px; display: none">
+            <div>
+                <h1>2</h1>
+                <button onclick="nextStep('03',2)">Next</button>
+            </div>
+        </div>
+        <div class="mainModal arrow_box arrow3" data-modal="03" style="top:420px; display: none">
+            <div>
+                <h1>3</h1>
+                <button onclick="nextStep('04',3)">Next</button>
+            </div>
+        </div>
+        <div class="mainModal arrow_box arrow4" data-modal="04" style="top:235px; display: none">
+            <div>
+                <h1>4</h1>
+                <button onclick="nextStep('05',4)">Next</button>
+            </div>
+        </div>
+        <div class="mainModal arrow_box arrow5" data-modal="05" style="top:400px; display: none">
+            <div>
+                <h1>5</h1>
+                <button onclick="nextStep('06',5)">Next</button>
+            </div>
+        </div>
+        <div class="mainModal arrow_box arrow6" data-modal="06" style="top:235px; display: none">
+            <div>
+                <h1>Fin</h1>
+                <button onclick="document.getElementsByClassName('mainModal')[5].style.display='none'">Next</button>
+            </div>
+        </div>
         <div class="contenedorSVG" style="width: 10%;">
         <svg height="230">
-            <path></path>
+            <path d=""></path>
         </svg>
         </div>
 
@@ -116,72 +78,6 @@
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
-<script>
-
-//    linea
-var points = [];
-function crearLineaFin(){
-    var lineGenerator = d3.line()
-            .curve(d3.curveCardinal);
-    var svgWidth = window.innerWidth;
-    svgWidth-=((svgWidth/100)*10);
-    var pointsConuter=0;
-    points = [
-        [30, 110],
-        [svgWidth*0.2, 15],
-        [svgWidth*0.3, 200]
-        ,
-        [svgWidth*0.6, 15],
-        [svgWidth*0.9, 180],
-        [svgWidth, 15]
-    ];
-console.log(points);
-
-    var pathData = lineGenerator(points);
-
-    d3.select('path')
-        .attr('d', pathData) ;
-
-    d3.select('svg')
-        .selectAll('text')
-        .data(points)
-        .enter()
-        .append('text')
-        .text("X")
-        .attr('counter', function(){
-            pointsConuter=parseInt(pointsConuter)+1;
-            pointsConuter="0"+pointsConuter;
-        return pointsConuter;
-    })
-        .attr('x', function(d) {
-            return (d[0]-18);
-        })
-        .attr('y', function(d) {
-            return (d[1]+15);
-        })}
-crearLineaFin();
-
-
-//listeners en x del mapa para aumentar el tamaño
-var svgCont=document.getElementsByClassName("contenedorSVG")[0];
-var mapPoints=document.getElementsByTagName("text");
-for(var i =0; i<mapPoints.length;i++){
-    document.querySelectorAll('[counter]')[i].onclick = function(){
-        console.log("entra");
-        if(svgCont.style.width=="10%" || parseInt(svgCont.style.width)<points[parseInt(this.getAttribute("counter"))][0]+18){
-            svgCont.style.width=points[parseInt(this.getAttribute("counter"))][0]+18+"px";
-        }
-    }
-}
-
-//resize del svg para responsive
-window.onresize = function(){  crearLineaFin();
-    var mapPoints=document.getElementsByTagName("text");
-    for(var i =0; i<mapPoints.length;i++){
-        mapPoints[i].setAttribute("x", (points[i][0]-18));
-    }
-    }
-
-</script>
+<script src="js/mainHome.js"></script>
 </body>
 </html>

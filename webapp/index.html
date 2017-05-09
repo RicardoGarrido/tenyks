@@ -10,23 +10,37 @@
 <div class="container">
 <header>
     <h1>TENYKS</h1>
-    <div>
+    <div class="clearlyClickable extraInfoStarter">
         <a>¿tu primera vez en tenyks?</a>
     </div>
 </header>
 <div class="main">
+    <div class="extraInfo modal" style="right:110%">
+        <div><h2>Bien venido a Tenyks</h2>
+            <div class="closeModal clearlyClickable"><a>X</a></div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam maximus lectus quis pellentesque varius.
+            Integer feugiat dignissim neque, sit amet facilisis odio. In aliquet lorem eget lorem efficitur iaculis.
+            Aenean faucibus dolor sit amet sagittis gravida. Sed iaculis, ex quis vehicula pulvinar, lorem nunc mollis
+            tellus, ut sagittis est nibh in nisi. Phasellus arcu nulla, sollicitudin ut egestas ac, tincidunt vel orci.
+            Maecenas sed condimentum enim. Phasellus a lectus metus. Mauris nunc quam, gravida vel urna ullamcorper,
+            dignissim gravida urna. Suspendisse elementum mi ac posuere condimentum. Curabitur tempus at elit eget
+            tempus. Aenean sodales velit vitae erat imperdiet, sit amet viverra nibh sollic</p>
+        </div>
+    </div>
     <div class="mainContent">
     <h2>HAZ DE TUS GANAS DE VIAJAR UN VIAJE</h2>
-        <div class="mainModal arrow_box arrow1" data-modal="01" style="top:330px; ">
+        <div class="resetDispo mainGuide clearlyClickable" style="display:none;"><a>Vovler a empezar!</a></div>
+        <div class="mainModal modal arrow_box arrow1" data-modal="01" style="top:330px; display: none">
             <div>
                 <h3>Selecciona tu presupuesto y numero de pasajeros</h3>
+                <div class="mainModalForm">
                 <form>
                     <label>
-                        Presupuesto:
+                        <span>Presupuesto: </span>
                         <input type="text">
                     </label>
                     <label>
-                        Cantidad Pasajeros:
+                        <span>Cantidad Pasajeros: </span>
                         <select>
                             <option selected>1</option>
                             <option>2</option>
@@ -35,43 +49,52 @@
                         </select>
                     </label>
                 </form>
-                <button onclick="nextStep('02',1)">Next</button>
+                </div>
+
+                <div class="mainModalInfo">
+                    <p>En este primer paso acotaremos tu busqueda de una manera un poco diferente.</p>
+                        <p>No te asustes! hay mas pasos que
+                    podras moldear a tu gusto para acotar el viaje que te interesa</p>
+                </div>
+
+                <button class="clearlyClickable" onclick="nextStep('02',1)">Next</button>
             </div>
         </div>
-        <div class="mainModal arrow_box arrow2" data-modal="02" style="top:235px; display: none">
+        <div class="mainModal modal arrow_box arrow2" data-modal="02" style="top:235px; display: none">
             <div>
                 <h1>2</h1>
-                <button onclick="nextStep('03',2)">Next</button>
+                <button class="clearlyClickable" onclick="nextStep('03',2)">Next</button>
             </div>
         </div>
-        <div class="mainModal arrow_box arrow3" data-modal="03" style="top:420px; display: none">
+        <div class="mainModal modal arrow_box arrow3" data-modal="03" style="top:420px; display: none">
             <div>
                 <h1>3</h1>
-                <button onclick="nextStep('04',3)">Next</button>
+                <button class="clearlyClickable" onclick="nextStep('04',3)">Next</button>
             </div>
         </div>
-        <div class="mainModal arrow_box arrow4" data-modal="04" style="top:235px; display: none">
+        <div class="mainModal modal arrow_box arrow4" data-modal="04" style="top:235px; display: none">
             <div>
                 <h1>4</h1>
-                <button onclick="nextStep('05',4)">Next</button>
+                <button class="clearlyClickable" onclick="nextStep('05',4)">Next</button>
             </div>
         </div>
-        <div class="mainModal arrow_box arrow5" data-modal="05" style="top:400px; display: none">
+        <div class="mainModal modal arrow_box arrow5" data-modal="05" style="top:400px; display: none">
             <div>
                 <h1>5</h1>
-                <button onclick="nextStep('06',5)">Next</button>
+                <button class="clearlyClickable" onclick="nextStep('06',5)">Next</button>
             </div>
         </div>
-        <div class="mainModal arrow_box arrow6" data-modal="06" style="top:235px; display: none">
+        <div class="mainModal modal arrow_box arrow6" data-modal="06" style="top:235px; display: none">
             <div>
                 <h1>Fin</h1>
-                <button onclick="document.getElementsByClassName('mainModal')[5].style.display='none'">Next</button>
+                <button class="clearlyClickable" onclick="document.getElementsByClassName('mainModal')[5].style.display='none'; document.getElementsByClassName('resetDispo')[0].style.display='block'">Next</button>
             </div>
         </div>
         <div class="contenedorSVG" style="width: 10%;">
-        <svg height="230">
+            <svg height="230">
             <path d=""></path>
         </svg>
+            <div class="start mainGuide clearlyClickable"><a>Empieza tu viaje!</a></div>
         </div>
 
     </div>

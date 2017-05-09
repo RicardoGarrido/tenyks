@@ -45,6 +45,27 @@ function crearLineaFin(){
         })
         .attr('class','arrow_box')}
 crearLineaFin();
+
+
+// encontrar padre especifico
+function findAncestor (el, cls) {
+    while ((el = el.parentElement) && !el.classList.contains(cls));
+    return el;
+}
+
+// cerrar modal
+var cerrarModalBoton=document.getElementsByClassName("closeModal");
+console.log("hola")
+Array.from(cerrarModalBoton).forEach(function(element) {
+    element.addEventListener('click', function(){
+        console.log("entra");
+        let modalPadre=findAncestor(this, "modal");
+        modalPadre.style.right="110%";
+    });
+});
+
+
+// funcionalidad modals
 var nextStep = function(dataModal,point){
     var dataModals = document.querySelectorAll('[data-modal]');
     for (var i = 0; i<dataModals.length; i++){
@@ -55,21 +76,29 @@ var nextStep = function(dataModal,point){
     svgCont.style.width=points[point][0]+18+"px";
 }
 
+// empezar el viaje pulsando ancho
+document.getElementsByClassName("start")[0].onclick = function(){
+    this.style.display="none";
+    document.querySelectorAll('[data-modal]')[0].style.display="block";
+}
+// informacion adicional
+document.getElementsByClassName("extraInfoStarter")[0].onclick = function(){
+    if(document.getElementsByClassName('extraInfo')[0].style.right=="110%"){
+    document.getElementsByClassName('extraInfo')[0].style.right="0%";}
+    else{
+        document.getElementsByClassName('extraInfo')[0].style.right="110%";
+    }
+}
 
+
+
+document.getElementsByClassName("resetDispo")[0].onclick = function(){
+    console.log("reset!");
+    window.location.reload();
+}
 //listeners en x del mapa para aumentar el tamaño
 var svgCont=document.getElementsByClassName("contenedorSVG")[0];
 var mapPoints=document.getElementsByTagName("text");
-var nextPointLine = function(element){
-    console.log("entra");
-    if(svgCont.style.width=="10%" || parseInt(svgCont.style.width)<points[parseInt(element.getAttribute("counter"))][0]+18){
-        svgCont.style.width=points[parseInt(element.getAttribute("counter"))][0]+18+"px";
-    }
-};
-for(var i =0; i<mapPoints.length;i++){
-    document.querySelectorAll('[counter]')[i].onclick = function(){
-        nextPointLine(this);
-    }
-};
 
 //resize del svg para responsive
 window.onresize = function(){

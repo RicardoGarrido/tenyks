@@ -39,6 +39,7 @@
                     <label>
                         <span>Presupuesto: </span>
                         <input type="text" id="presupuesto">
+                        <select id="divisa"><option selected>EUR</option></select>
                     </label>
                     <label>
                         <span>Origen: </span>
@@ -70,7 +71,7 @@
         <!--modal-2-->
         <div class="mainModal mainModalDispo modal arrow_box arrow2" data-modal="02" style="top:235px; display: none">
             <div>
-                <h3>Selecciona tu destino</h3>
+                <h3>Selecciona tu vuelo</h3>
                 <div id="destinosPrimerFiltro" class="mainModalForm">
                     <div class="filtros">
                         <label><span>Filtrar salida por: </span><select id="filtroFechaSalida"><option value="0" selected>a partir de</option>
@@ -92,7 +93,7 @@
                     hemos seccionado los destinos por zonas.</p>
                     <p>En esta misma sección te ofrecemos tambien la posibilidad de filtrar por fechas</p>
                     <button class="clearlyClickable next" id="btnToHotel">Next</button>
-                    <button class="clearlyClickable next leftButton" onclick="nextStep('01',0)">Volver a seleccionar presupuesto</button>
+                    <button class="clearlyClickable next leftButton" onclick="nextStep('01',0)">Volver a presupuesto</button>
                 </div>
 
 

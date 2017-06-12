@@ -30,14 +30,21 @@
     <div class="mainContent">
     <h2>HAZ DE TUS GANAS DE VIAJAR UN VIAJE</h2>
         <div class="resetDispo mainGuide clearlyClickable" style="display:none;"><a>Vovler a empezar!</a></div>
+        <!--modal-1-->
         <div class="mainModal modal arrow_box arrow1" data-modal="01" style="top:330px; display: none">
             <div>
-                <h3>Selecciona tu presupuesto y numero de pasajeros</h3>
+                <h3>Selecciona tu presupuesto, origen y numero de pasajeros</h3>
                 <div class="mainModalForm">
                 <form>
                     <label>
                         <span>Presupuesto: </span>
-                        <input type="text">
+                        <input type="text" id="presupuesto">
+                    </label>
+                    <label>
+                        <span>Origen: </span>
+                        <select>
+                            <option selected>Palma de Mallorca (PMI)</option>
+                        </select>
                     </label>
                     <label>
                         <span>Cantidad Pasajeros: </span>
@@ -57,39 +64,107 @@
                     podras moldear a tu gusto para acotar el viaje que te interesa</p>
                 </div>
 
-                <button class="clearlyClickable" onclick="nextStep('02',1)">Next</button>
+                <button class="clearlyClickable next">Next</button>
             </div>
         </div>
-        <div class="mainModal modal arrow_box arrow2" data-modal="02" style="top:235px; display: none">
+        <!--modal-2-->
+        <div class="mainModal mainModalDispo modal arrow_box arrow2" data-modal="02" style="top:235px; display: none">
             <div>
-                <h1>2</h1>
-                <button class="clearlyClickable" onclick="nextStep('03',2)">Next</button>
+                <h3>Selecciona tu destino</h3>
+                <div id="destinosPrimerFiltro" class="mainModalForm">
+                    <div class="filtros">
+                        <label><span>Filtrar salida por: </span><select id="filtroFechaSalida"><option value="0" selected>a partir de</option>
+                            <option value="1">antes de</option>
+                            <option value="2">fecha exacta</option></select>
+                        </label>
+                        <label><span>Fecha de salida: </span><input id="fechaSalida" type="date"/>
+                        </label>
+                        <label><span>Duración: </span><select id="duracionViaje"><option selected>7</option></select>
+                        </label>
+                    </div>
+                    <div id="dispoContinetnes"></div>
+
+                </div>
+
+                <div class="mainModalInfo">
+                    <p>En este segundo paso te ofrecemos todos los destinos.</p>
+                    <p>Para hacerte mas comoda la busqueda y ofrecerte posibilidades que quizas no tenias contempladas
+                    hemos seccionado los destinos por zonas.</p>
+                    <p>En esta misma sección te ofrecemos tambien la posibilidad de filtrar por fechas</p>
+                    <button class="clearlyClickable next" id="btnToHotel">Next</button>
+                    <button class="clearlyClickable next leftButton" onclick="nextStep('01',0)">Volver a seleccionar presupuesto</button>
+                </div>
+
+
             </div>
         </div>
+        <!--modal-3-->
         <div class="mainModal modal arrow_box arrow3" data-modal="03" style="top:420px; display: none">
             <div>
-                <h1>3</h1>
-                <button class="clearlyClickable" onclick="nextStep('04',3)">Next</button>
+                <h3>Aqui esta la información que estabas buscando!</h3>
+                <div class="extraHospedajeInfo">
+                    <p>Estas opciones que ofrecemos aquí son herramientas que se suele usar para viajar y hospedarse gratis
+                    en casas de habitantes de la zona, te ofrecen posibilidades distintas a las que te daría un hotel, es importante
+                    entender que generalmente los anfitriones ofrecen sus servicios sin animo de lucro, así que sed buenos!</p>
+
+                    <h4>Hospedarse con  Couchsurfing </h4>
+                    <p>Couchsurfing ya no solo es un lugar para conseguir alojamiento, sino un sitio de encuentro,
+                        donde en la mayoría de ciudades del mundo hacen reuniones sociales, eventos y todo tipo de fiestas
+                        para crear nuevos lazos de amistad entre los viajeros del mundo y los locales.</p>
+                    <p><a target="_blank" href="https://www.couchsurfing.com">Couchsurfing</a></p>
+
+                    <h4>Hospedarse con Hospitality Club </h4>
+                    <p>Hospitality Club es un servicio de hospitalidad internacional con casi 1.000.000 de miembros en
+                        la mayoría de países del mundo. Una página muy similar a Couchsurfing donde los miembros encuentran
+                        alojamiento en casas de familia, además de búsqueda de locales que te quieran dar una manito
+                        enseñándote su ciudad</p>
+                    <p><a target="_blank" href="https://www.HospitalityClub.org">Hospitality Club</a></p>
+                </div>
+                <button class="clearlyClickable toResumen" onclick="nextStep('06',5)">Next</button>
+                <button class="clearlyClickable" onclick="nextStep('04',3)">Volver a Hoteles</button>
             </div>
         </div>
+        <!--modal-4-->
         <div class="mainModal modal arrow_box arrow4" data-modal="04" style="top:235px; display: none">
             <div>
-                <h1>4</h1>
-                <button class="clearlyClickable" onclick="nextStep('05',4)">Next</button>
+                <h3>Selecciona tu hospedaje</h3>
+                <form id="hospedajeTablaCont" class="mainModalForm">
+                </form>
+
+                <div class="mainModalInfo">
+                    <p>En este tercer paso te ofrecemos todos los posibles lugares donde refujiarte.</p>
+                    <p>No es necesario seleccionar unas de las ofertas, siempre podemos ofrecerte herramientas alternativas
+                        donde conseguir hospedaje o simplemente ignorar este paso.</p>
+                </div>
+                <button class="clearlyClickable leftButton" onclick="nextStep('02',1)">Volver a vuelos</button>
+                <button class="clearlyClickable toResumen" onclick="nextStep('06',5)">Next</button>
+                <button class="clearlyClickable" onclick="nextStep('03',2)">Ver otras hospedajes</button>
             </div>
         </div>
+        <!--modal-5-->
         <div class="mainModal modal arrow_box arrow5" data-modal="05" style="top:400px; display: none">
             <div>
                 <h1>5</h1>
                 <button class="clearlyClickable" onclick="nextStep('06',5)">Next</button>
             </div>
         </div>
+        <!--modal-6-->
         <div class="mainModal modal arrow_box arrow6" data-modal="06" style="top:235px; display: none">
             <div>
-                <h1>Fin</h1>
-                <button class="clearlyClickable" onclick="document.getElementsByClassName('mainModal')[5].style.display='none'; document.getElementsByClassName('resetDispo')[0].style.display='block'">Next</button>
+                <h3>Resumen de tu viaje</h3>
+                <div id="resumenInfo" class="mainModalForm">
+                </div>
+
+                <div class="mainModalInfo">
+                    <p>A continuacion le ofrecemos las urls desde las cuales podra completar la transacción para comenzar su viaje,
+                    ¡buena suerte!</p>
+                   <div id="resumenURLs"></div>
+                </div>
+                <button class="clearlyClickable" onclick="document.getElementsByClassName('mainModal')[5].style.display='none'; document.getElementsByClassName('resetDispo')[0].style.display='block'">Cerrar</button>
+                <button class="clearlyClickable" onclick="nextStep('04',3)">Volver a Hoteles</button>
             </div>
         </div>
+        <!--svg-->
         <div class="contenedorSVG" style="width: 10%;">
             <svg height="230">
             <path d=""></path>
@@ -102,5 +177,8 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
 <script src="js/mainHome.js"></script>
+<script src="js/vuelosAjax.js"></script>
+<script src="js/hotelAjax.js"></script>
+<script src="js/ResumenInfo.js"></script>
 </body>
 </html>

@@ -132,6 +132,56 @@ svg{
     vertical-align:top;
     text-align:justify;
 }
+/*Segundo Modal*/
+.mainModalDispo{
+    height:100%;
+    padding-bottom:0.5rem;
+}
+.dispoVueloTabla .continenteTH,.dispoVueloTabla .paisTH,.dispoVueloTabla .ciudadTH{
+    cursor:pointer
+}
+#destinosPrimerFiltro .filtros{
+    padding: 1rem;
+    background: rgb(206, 202, 202);}
+#destinosPrimerFiltro label{
+    width:32%;
+    vertical-align:top;
+}
+#destinosPrimerFiltro label.ciudadTH{
+    width:100%;
+    padding:0.2rem 0;
+}
+#destinosPrimerFiltro .ciudadesTabla>input[type="radio"] {
+    display: none;
+}
+#destinosPrimerFiltro .radioInvi:checked +label.ciudadTH{
+    background: #22587f;
+    color: white;
+}
+#destinosPrimerFiltro label span{
+    width:100%;
+    display:block;
+}
+div#dispoContinetnes {
+    position: relative;
+}
+.continenteTH {
+    width: auto;
+    display: inline-block;
+    padding: 0 1rem;
+}
+.paisesTabla {
+    padding: 1rem;
+    position: absolute;
+    height: 160px;
+    overflow-y: scroll;
+    width: calc(100% - 1rem);
+    background: white;
+}
+.ciudadesTabla>* {
+    text-indent: 1rem;
+}
+/*Fin segnudo modal*/
 .mainModal .mainModalForm label{
     width: 100%;
     display: inline-block;
@@ -147,6 +197,23 @@ svg{
     display: inline-block;
     width: 40%;
 }
+.mainModal label span+*{
+    width: 9rem;
+    height: 2rem;
+    font-size: 1.6rem;
+}
+.paisTH {
+    border-bottom: 1px solid #cecaca;
+    margin-top: .5rem;
+}
+.ciudadTH:nth-of-type(even) {
+    background: wheat;
+}
+.ciudadesTabla {
+    border: 1px solid #cecaca;
+    border-top: none;
+    /*padding: .5rem 0 0;*/
+}
 .mainModal button {
     float: right;
     font-size: 2rem;
@@ -154,6 +221,9 @@ svg{
     border: none;
     color: white;
     background: #22587f;
+}
+.mainModal button.leftButton{
+    float: left;
 }
 
 /*flecha*/
@@ -240,3 +310,62 @@ svg{
     -o-transform: scale(1.3,1.3);
 }
 /*depurar*/
+/*dispo continente*/
+/*modal extraHospedaje*/
+.extraHospedajeInfo * {
+    text-align: left;
+}
+/*Fin modal extraHospedaje*/
+.paisesTabla, .ciudadesTabla{
+    display:none;
+}
+
+/*modal hospedaje*/
+.categoriaHotel{
+    float:right;
+}
+#hospedajeTablaCont .habitacionTabla>input[type="radio"] {
+    display: none;
+}
+#hospedajeTablaCont .radioInvi:checked +label.habitacionTH{
+    background: #22587f;
+    color: white;
+}
+#hospedajeTablaCont {
+    height: 150px;
+    margin-bottom: 2rem;
+    overflow-y: scroll;
+    background: white;
+}
+#hospedajeTablaCont .hotelTH {
+    border-bottom: 1px solid #cecaca;;
+}
+#hospedajeTablaCont .habitacionTabla{
+    display:none;
+}
+.habitacionTH:nth-of-type(even) {
+    background: wheat;
+}
+
+/*Resumen Final*/
+#resumenInfo p, #resumenInfo div.precioResumen {
+    width: auto;
+    display: inline-block;
+}
+
+#resumenInfo div.precioResumen {
+    float:right;
+}
+#resumenInfo>div {
+    width: 100%;
+    border-bottom: 1px dashed gray;
+    margin-bottom: .5rem;
+}
+
+#resumenInfo>div:nth-last-of-type(2) {
+    border-bottom: 1px solid gray;
+}
+
+#resumenInfo>div.totalResumen {
+    border-bottom: none;
+}

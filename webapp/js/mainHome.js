@@ -19,7 +19,6 @@ function crearLineaFin(){
         [svgWidth*0.9, 180],
         [svgWidth, 15]
     ];
-    console.log(points);
 
     var pathData = lineGenerator(points);
 
@@ -55,10 +54,8 @@ function findAncestor (el, cls) {
 
 // cerrar modal
 var cerrarModalBoton=document.getElementsByClassName("closeModal");
-console.log("hola")
 Array.from(cerrarModalBoton).forEach(function(element) {
     element.addEventListener('click', function(){
-        console.log("entra");
         let modalPadre=findAncestor(this, "modal");
         modalPadre.style.right="110%";
     });
@@ -72,7 +69,6 @@ var nextStep = function(dataModal,point){
         document.querySelectorAll('[data-modal]')[i].style.display="none";
     }
     document.querySelectorAll('[data-modal="'+dataModal+'"]')[0].style.display="block";
-    console.log('[counter="'+dataModal+'"]');
     svgCont.style.width=points[point][0]+18+"px";
 }
 
@@ -93,7 +89,6 @@ document.getElementsByClassName("extraInfoStarter")[0].onclick = function(){
 
 
 document.getElementsByClassName("resetDispo")[0].onclick = function(){
-    console.log("reset!");
     window.location.reload();
 }
 //listeners en x del mapa para aumentar el tamaño
